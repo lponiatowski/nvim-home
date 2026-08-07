@@ -18,3 +18,7 @@ keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
 keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 keymap.set("n", "<leader>Q", ":q!<CR>", { desc = "Force quit" })
+
+-- Buffer management
+keymap.set("n", "<leader>bc", ":bdelete!<CR>", { desc = "Close buffer" })
+keymap.set("n", "<leader>bC", ":bdelete! %d<CR>", { desc = "Force close buffer" })

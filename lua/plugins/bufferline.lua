@@ -7,12 +7,8 @@ return {
     options = {
       mode = "tabs",
       numbers = "buffer_id",
-      close_command = function(bufnr)
-        require("bufdelete").bufdelete(bufnr, false)
-      end,
-      right_mouse_command = function(bufnr)
-        require("bufdelete").bufdelete(bufnr, false)
-      end,
+      close_command = "bdelete! %d",
+      right_mouse_command = "bdelete! %d",
       diagnostics = "nvim_lsp",
       diagnostics_update_in_insert = false,
       offsets = {

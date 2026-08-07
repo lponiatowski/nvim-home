@@ -51,9 +51,11 @@ return {
           { buffer = buf, desc = "Mermaid Render" })
         vim.keymap.set("n", "<leader>mc", "<cmd>MermaidCopyURL<CR>",
           { buffer = buf, desc = "Mermaid Copy URL" })
-        vim.keymap.set("n", "<leader>mx", "<cmd>MermaidPreviewStop<CR>",
-          { buffer = buf, desc = "Mermaid Stop Preview" })
       end,
     })
+
+    -- Global keymap to stop preview from anywhere
+    vim.keymap.set("n", "<leader>mx", "<cmd>MermaidPreviewStop<CR>",
+      { desc = "Mermaid Stop Preview" })
   end,
 }
