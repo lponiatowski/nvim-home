@@ -3,7 +3,7 @@ local keymap = vim.keymap
 
 -- Leader key
 vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = " "
 
 -- Clear search highlights
 keymap.set("n", "<leader>h", ":nohl<CR>", { silent = true, desc = "Clear search highlights" })
@@ -22,3 +22,9 @@ keymap.set("n", "<leader>Q", ":q!<CR>", { desc = "Force quit" })
 -- Buffer management
 keymap.set("n", "<leader>bc", ":bdelete!<CR>", { desc = "Close buffer" })
 keymap.set("n", "<leader>bC", ":bdelete! %d<CR>", { desc = "Force close buffer" })
+
+-- Buffer navigation (for bufferline)
+keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
+keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
+keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
+keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
