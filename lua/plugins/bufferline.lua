@@ -5,7 +5,7 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     options = {
-      mode = "tabs",
+      mode = "buffers",
       numbers = "buffer_id",
       close_command = "bdelete! %d",
       right_mouse_command = "bdelete! %d",
