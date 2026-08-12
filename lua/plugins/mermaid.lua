@@ -15,6 +15,7 @@ return {
       preview = {
         renderer = "mermaid.js", -- "mermaid.js" or "beautiful-mermaid"
         theme = "default", -- Theme name (renderer-specific)
+        browser = "safari", -- Browser for preview
       },
     })
 
