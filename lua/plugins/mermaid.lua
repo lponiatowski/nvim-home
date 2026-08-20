@@ -9,7 +9,7 @@ return {
         shift_width = 4, -- Indentation size (spaces)
       },
       lint = {
-        enabled = true, -- Enable diagnostics via mmdc
+        enabled = false, -- Disable diagnostics to avoid mmdc/chrome-headless-shell dependency
         command = "mmdc", -- Path to mermaid-cli executable
       },
       preview = {
