@@ -10,28 +10,35 @@ return {
     end,
   },
   {
-    "simrat39/rust-tools.nvim",
+    "mrcjkb/rustaceanvim",
+    version = "^7",
     ft = "rust",
-    dependencies = { "nvim-lua/plenary.nvim", "hrsh7th/cmp-nvim-lsp" },
-    opts = function()
-      return {
+    init = function()
+      vim.g.rustaceanvim = {
         server = {
           on_attach = function(_, bufnr)
-            local rt = require("rust-tools")
             local keymap = vim.keymap
 
-            keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "Hover actions" })
-            keymap.set("n", "<leader>ra", rt.code_action_group.code_action_group, { buffer = bufnr, desc = "Code actions" })
-            keymap.set("n", "<leader>rr", rt.runnables.runnables, { buffer = bufnr, desc = "Runnables" })
-            keymap.set("n", "<leader>rt", rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr, desc = "Open Cargo.toml" })
+            keymap.set("n", "K", function()
+              vim.cmd.RustLsp({ "hover", "actions" })
+            end, { buffer = bufnr, desc = "Hover actions" })
+            keymap.set("n", "<leader>ra", function()
+              vim.cmd.RustLsp("codeAction")
+            end, { buffer = bufnr, desc = "Code actions" })
+            keymap.set("n", "<leader>rr", function()
+              vim.cmd.RustLsp("runnables")
+            end, { buffer = bufnr, desc = "Runnables" })
+            keymap.set("n", "<leader>rt", function()
+              vim.cmd.RustLsp("openCargo")
+            end, { buffer = bufnr, desc = "Open Cargo.toml" })
             keymap.set("n", "<leader>rc", function()
-              rt.expand_macro.expand_macro({ bufnr = bufnr })
+              vim.cmd.RustLsp("expandMacro")
             end, { buffer = bufnr, desc = "Expand macro" })
           end,
           capabilities = require("cmp_nvim_lsp").default_capabilities(),
-          settings = {
+          default_settings = {
             ["rust-analyzer"] = {
-              checkOnSave = {
+              check = {
                 command = "clippy",
               },
               procMacro = {
@@ -53,13 +60,6 @@ return {
           },
         },
         tools = {
-          inlay_hints = {
-            auto = true,
-            only_current_line = false,
-            show_parameter_hints = true,
-            parameter_hints_prefix = "<-",
-            other_hints_prefix = "=>",
-          },
           hover_actions = {
             auto_focus = true,
             border = "rounded",
@@ -74,9 +74,8 @@ return {
     event = { "BufRead Cargo.toml" },
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
-      src = {
+      completion = {
         insert_closing_quote = true,
-        validate_cargo_toml = true,
       },
       popup = {
         autofocus = true,

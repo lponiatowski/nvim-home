@@ -25,16 +25,6 @@ return {
         },
         pyright = {},
         ts_ls = {},
-        rust_analyzer = {
-          settings = {
-            ["rust-analyzer"] = {
-              diagnostics = { enable = true },
-              procMacro = { enable = true },
-              cargo = { allFeatures = true },
-              checkOnSave = { command = "clippy" },
-            },
-          },
-        },
         bashls = {},
         jsonls = {},
         yamlls = {},
@@ -91,6 +81,9 @@ return {
         "marksman",
       },
       automatic_installation = true,
+      automatic_enable = {
+        exclude = { "rust_analyzer" },
+      },
     },
   },
 }
